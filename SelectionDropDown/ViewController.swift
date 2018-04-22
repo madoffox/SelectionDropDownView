@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         selectionDropDownView.listOfItems = ["abc", "abcd", "abcde","abcdef","abcdefg"]
         selectionDropDownView.delegate = self
         selectionDropDownView.shouldReturnDeletedItemsToList = true
-        selectionDropDownView.mainColor = .red
+        selectionDropDownView.mainColor = .blue
         self.view.addSubview(selectionDropDownView)
         
         
