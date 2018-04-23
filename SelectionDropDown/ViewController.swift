@@ -14,8 +14,6 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.backgroundColor = UIColor.magenta
-        
         selectionDropDownView = SelectionDropDownView(frame: CGRect(x: 10, y: 40, width: self.view.frame.width-20, height: self.view.frame.height/3 ))
         selectionDropDownView.cornerRadius = 12
         selectionDropDownView.listOfItems = ["abc", "abcd", "abcde","abcdef","abcdefg"]
