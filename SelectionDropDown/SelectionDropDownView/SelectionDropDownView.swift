@@ -258,6 +258,28 @@ extension SelectionDropDownView: UITableViewDelegate, UITableViewDataSource, Dro
         return listOfItems.count
     }
    
+    func tableView(_ tableView:UITableView, updateLayerOptionsAndDeleteCellAt indexPath:IndexPath) {
+        listOfItems.remove(at: (indexPath.row))
+        tableView.deleteRows(at: [indexPath], with: .none)
+        
+        for cell in (tableView.visibleCells) {
+            guard let indexPath = tableView.indexPath(for: cell) else {return}
+            if(indexPath.row == 0) {
+                cell.layer.roundCorners(corners: [.topLeft,.topRight], radius: (self.cornerRadius), viewBounds: cell.bounds)
+            }
+            if(indexPath.row == (listOfItems.count)-1) {
+               cell.layer.roundCorners(corners: [.bottomLeft,.bottomRight], radius: (self.cornerRadius), viewBounds: cell.bounds)
+            }
+            if((listOfItems.count) - 1 == 0){
+                cell.layer.roundCorners(corners: [.bottomLeft,.bottomRight,.topLeft,.topRight], radius: (self.cornerRadius), viewBounds: cell.bounds)
+            }
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.unwrapTableView()
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, didSelectDropDownCellAtIndexPath indexPath: IndexPath) {
         let item = listOfItems[indexPath.row]
         listOfSelectedItems.append(item)
