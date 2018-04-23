@@ -10,6 +10,7 @@ import UIKit
 
 protocol DropDownTableViewDelegate: class{
     func tableView(_ tableView:UITableView, didSelectDropDownCellAtIndexPath indexPath:IndexPath)
+    func tableView(_ tableView:UITableView, updateLayerOptionsAndDeleteCellAt indexPath:IndexPath)
 }
 
 class DropDownTableViewCell: UITableViewCell {
@@ -158,45 +159,15 @@ class DropDownTableViewCell: UITableViewCell {
                 if(willDeleteCell){
                     self.deleteCell()
                     
+                    
                 }
             })
         })
     }
     
     private func deleteCell() {
-        var view: SelectionDropDownView? {
-            var parentResponder: UIResponder? = self
-            while parentResponder != nil {
-                parentResponder = parentResponder!.next
-                if let view = parentResponder as? SelectionDropDownView {
-                    return view
-                }
-            }
-            return nil
-        }
-        
-        guard let indexPath = view?.tableView.indexPath(for: self) else {return}
-        view?.listOfItems.remove(at: (indexPath.row))
-        
-        view?.tableView.deleteRows(at: [indexPath], with: .none)
-        for cell in (view?.tableView.visibleCells)! {
-            guard let indexPath = view?.tableView.indexPath(for: cell) else {return}
-            if(indexPath.row == 0) {
-                UIView.animate(withDuration: 0.4, animations: {
-                    cell.layer.roundCorners(corners: [.topLeft,.topRight], radius: (view?.cornerRadius)!, viewBounds: cell.bounds)
-                })
-            }
-            if(indexPath.row == (view?.listOfItems.count)!-1) {
-                UIView.animate(withDuration: 0.4, animations: {
-                cell.layer.roundCorners(corners: [.bottomLeft,.bottomRight], radius: (view?.cornerRadius)!, viewBounds: cell.bounds)
-                })
-            }
-            if((view?.listOfItems.count)! - 1 == 0){
-                UIView.animate(withDuration: 0.4, animations: {
-                cell.layer.roundCorners(corners: [.bottomLeft,.bottomRight,.topLeft,.topRight], radius: (view?.cornerRadius)!, viewBounds: cell.bounds)
-                })
-            }
-        }
+        guard let indexPath = self.tableView!.indexPath(for: self) else {return}
+        delegate.tableView(self.tableView!, updateLayerOptionsAndDeleteCellAt: indexPath)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
