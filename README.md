@@ -1,5 +1,7 @@
 # SelectionDropDownView
 SelectionDropDownView is a dropdown view for iOS. It allows you to select multiple amount of items.
+
+
 ![alt tag](https://github.com/madoffox/SelectionDropDownView/blob/master/ScreenRecording_04-22-2018%2022:26.gif)
 
 ## Usage
