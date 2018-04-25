@@ -4,7 +4,7 @@ SelectionDropDownView is a dropdown view for iOS. It allows you to select multip
 
 ## Usage
 
-Setting up is easy. First, you need initialize a SelectionDropDownView in your view
+Setting up is easy. First, you need to initialize a SelectionDropDownView in your view
 ```swift
 let frame = CGRect(x: 10, y: 40, width: self.view.frame.width-20, height: self.view.frame.height/3 )
 let selectionDropDownView = SelectionDropDownView(frame: frame)
