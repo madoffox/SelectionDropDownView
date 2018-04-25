@@ -16,7 +16,7 @@ After your SelectionDropDownView is initialized, you should specify which items 
 selectionDropDownView.listOfItems = ["abc", "abcd", "abcde","abcdef","abcdefg"]
 ```
 
-When you are ready, conform your class to the 'SelectionDropDownViewDelegate' and implement the 'selectionView' method.
+When you are ready, conform your class to the `SelectionDropDownViewDelegate` and implement the `selectionView` method.
 
 ```swift
 selectionDropDownView.delegate = self
@@ -26,9 +26,7 @@ extension ViewController: SelectionDropDownViewDelegate {
         print("item:","\n", item)
         print("---------------")
         print("list:","\n",list)
-    }
-    
-    
+    }  
 }
 ```
 
